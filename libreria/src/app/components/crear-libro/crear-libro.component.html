@@ -1,0 +1,56 @@
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-lg-6 offset-lg-3">
+            <div class="card">
+                <div class="card-body text-center">
+                    <span class="title">{{ titulo | uppercase }}</span>
+                    <form class="mt-3" [formGroup]="libroForm" (ngSubmit)="registrar()">
+                        <!-- Campo: Nombre del libro -->
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control form-control-lg" id="floatingInput" formControlName="nombre" placeholder="Nombre del libro">
+                            <label for="floatingInput">Nombre del libro</label>
+                            <div class="text-danger" *ngIf="libroForm.get('nombre')?.hasError('required') && libroForm.get('nombre')?.touched">
+                                <span>El nombre del libro <strong>es obligatorio</strong></span>
+                            </div>
+                        </div>
+                        <!-- Campo: Género -->
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control form-control-lg" formControlName="genero" placeholder="Género">
+                            <label for="floatingInput">Género</label>
+                            <div class="text-danger" *ngIf="libroForm.get('genero')?.hasError('required') && libroForm.get('genero')?.touched">
+                                <span>El tipo de género <strong>es obligatorio</strong></span>
+                            </div>
+                        </div>
+                        <!-- Campo: Autor -->
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control form-control-lg" formControlName="autor" placeholder="Autor">
+                            <label for="floatingInput">Autor</label>
+                            <div class="text-danger" *ngIf="libroForm.get('autor')?.hasError('required') && libroForm.get('autor')?.touched">
+                                <span>El nombre del autor <strong>es obligatorio</strong></span>
+                            </div>
+                        </div>
+                        <!-- Campo: Número de páginas -->
+                        <div class="form-floating mb-3">
+                            <input type="number" class="form-control form-control-lg" formControlName="paginas" placeholder="Número de páginas">
+                            <label for="floatingInput">Número de páginas</label>
+                            <div class="text-danger" *ngIf="libroForm.get('paginas')?.hasError('required') && libroForm.get('paginas')?.touched">
+                                <span>La cantidad de páginas <strong>es obligatoria</strong></span>
+                            </div>
+                        </div>
+                        <!-- Botones -->
+                        <div class="mb-3">
+                            <!-- Botón Regresar -->
+                            <button routerLink="/listar-libros" class="btn btn-danger btn-lg float-start">
+                                Regresar
+                            </button>
+                            <!-- Botón Registrar -->
+                            <button type="submit" class="btn btn-success btn-lg float-end" [disabled]="libroForm.invalid">
+                                Registrar
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

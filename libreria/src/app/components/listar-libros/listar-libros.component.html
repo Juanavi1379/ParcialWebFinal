@@ -1,0 +1,51 @@
+<div class="container mt-5">
+  <div class="row">
+    <div class="div col-lg-8 offset-lg-2">
+      <div class="form-floating mb-3 buscar">
+        <input type="text" class="form-control" [(ngModel)]="terminoBusqueda" placeholder="Buscar libro">
+        <label for="floatingInput">Buscar libro</label>
+        <button class="btn btn-primary" (click)="buscarLibros()">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          Buscar</button>
+      </div>
+      
+      
+      <div class="card">
+        <div class="card-body text-center">
+          <span class="title">Listado de libros</span>
+          <!-- Botón Nuevo -->
+          <button class="btn btn-success float-end" routerLink="/crear-libro">
+            <i class="fa-solid fa-book"></i> Nuevo libro
+          </button>
+          <!-- Tabla -->
+          <table *ngIf="listLibros.length > 0" class="table table-striped mt-2">
+            <thead>
+              <tr>
+                <th scope="col">Libro</th>
+                <th scope="col">Género</th>
+                <th scope="col">Autor</th>
+                <th scope="col">Páginas</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Ejemplo de fila de libro -->
+              <tr *ngFor="let libro of listLibros">
+                <td>{{libro.nombre}}</td>
+                <td>{{libro.genero}}</td>
+                <td>{{libro.autor}}</td>
+                <td>{{libro.paginas}}</td>
+                <td>
+                  <i [routerLink]="['/editar-libro', libro._id]" class="fa-solid fa-pen-to-square"></i> <!-- Icono de editar -->
+                  <i (click)="eliminarLibro(libro._id)" class="fa-solid fa-trash"></i> <!-- Icono de eliminar -->
+                </td>
+              </tr>
+              <!-- Ejemplo de otra fila de libro -->
+            </tbody>
+          </table>
+          <h5 style="text-align:start; margin-top: 10px" *ngIf="listLibros.length === 0">No hay libros disponibles</h5>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
